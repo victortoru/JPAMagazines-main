@@ -1,12 +1,22 @@
 package model;
 
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
+@Entity
+@Access(AccessType.FIELD)
+@Table(name = "autors")
 public class Author implements Serializable {
     @Id
+    @Column(name = "id_autor")
     int authorId;
-    String name, nationality, birthYear;
+    @Column(name = "nom", length = 30)
+    String name;
+    @Column(name = "nacionalitat", length = 12)
+    String nationality;
+    @Column(name = "any_naixement", length = 4)
+    String birthYear;
+    @Column(name = "actiu")
     boolean active;
 
     public Author(int authorId, String name, String nationality, String birthYear,

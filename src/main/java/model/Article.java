@@ -1,20 +1,25 @@
 package model;
 
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
-
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
+@Entity
+@Access(AccessType.FIELD)
+@Table(name = "articles")
 public class Article implements Serializable {
   @Id
+  @Column(name = "id_article")
   int articleId;
+  @Column(name = "titol", length = 30)
   String title;
+  @Column(name = "data_creacio")
   Date publicationDate;
+  @Column(name = "publicable")
   boolean publishable;
-  @Transient
+
+  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  @JoinColumn(name = "id_autor")
   public Author author;
 
   public Article(int articleId, String title, Date publicationDate,
@@ -75,11 +80,11 @@ public class Article implements Serializable {
   @Override
   public String toString() {
     return "Article{" +
-        "articleId=" + articleId +
-        ", title='" + title + '\'' +
-        ", publicationDate=" + publicationDate +
-        ", publishable=" + publishable +
-        ", author=" + author.toString() +
-        '}';
+            "articleId=" + articleId +
+            ", title='" + title + '\'' +
+            ", publicationDate=" + publicationDate +
+            ", publishable=" + publishable +
+            ", author=" + author.toString() +
+            '}';
   }
 }
