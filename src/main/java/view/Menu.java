@@ -17,13 +17,18 @@ Menu {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         do {
-
             System.out.println(" \nMENU PRINCIPAL \n");
-
-            System.out.println("1. Carrega dades. ");
-            System.out.println("2. Consulta dades. ");
-
-            System.out.println("0. Sortir. ");
+            System.out.println("Escull una opció: ");
+            System.out.println("1. Crea las tablas en la BD");
+            System.out.println("2. Insertar Info en las Tablas");
+            System.out.println("3. Muestra la información de las tablas");
+            System.out.println("4. Eliminar tablas");
+            System.out.println("5. Filtrar Información");
+            System.out.println("6. Modificat Info de las tablas");
+            System.out.println("7. Modificat Info de las tablas");
+            System.out.println("8. Mostrar Tablas");
+            System.out.println("9. Filtrar Información");
+            System.out.println("10. Sortir");
 
             System.out.println("Esculli opció: ");
             try {
