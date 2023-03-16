@@ -5,6 +5,7 @@ import java.util.List;
 
 import controller.ArticleController;
 import controller.AuthorController;
+import controller.DatabaseController;
 import controller.MagazineController;
 import database.ConnectionFactory;
 import model.*;
@@ -23,7 +24,6 @@ import javax.persistence.Persistence;
 
 
 public class Main {
-
   static SessionFactory sessionFactoryObj;
 
   private static SessionFactory buildSessionFactory() {
@@ -50,9 +50,7 @@ public class Main {
     return emf;
   }
 
-  public static void main(String[] args) {
-    ArrayList<Magazine> revistes = new ArrayList();
-
+  public static void main(String[] args) throws IOException, InterruptedException {
     ConnectionFactory connectionFactory = ConnectionFactory.getInstance();
     Connection c = connectionFactory.connect();
 
@@ -61,7 +59,7 @@ public class Main {
     AuthorController authorController = new AuthorController(c, entityManagerFactory);
     ArticleController articleController = new ArticleController(c, entityManagerFactory);
     MagazineController magazineController = new MagazineController(c, entityManagerFactory);
-
+    DatabaseController databaseController = new DatabaseController(c, entityManagerFactory);
     Menu menu = new Menu();
     int opcio;
     opcio = menu.mainMenu();
@@ -70,28 +68,6 @@ public class Main {
 
       case 1:
 
-        System.out.println("1!!");
-        try {
-
-          List<Author> authors = authorController.readAuthorsFile("src/main/resources/autors.txt");
-          List<Magazine> magazines = articleController.readArticlesFile("src/main/resources/articles.txt", "src/main/resources/revistes.txt", "src/main/resources/autors.txt");
-          List<Article> articles = articleController.readArticlesFile("src/main/resources/articles.txt", "src/main/resources/autors.txt");
-
-          System.out.println("Revistes llegides des del fitxer");
-          for (int i = 0; i < magazines.size(); i++) {
-            System.out.println(magazines.get(i).toString()+"\n");
-            for (int j = 0; j < magazines.get(i).getArticles().size(); j++) {
-              articleController.addArticle(magazines.get(i).getArticles().get(j));
-              authorController.addAuthor(magazines.get(i).getArticles().get(j).getAuthor());
-            }
-            magazineController.addMagazine(magazines.get(i));
-          }
-
-
-        } catch (NumberFormatException | IOException e) {
-
-          e.printStackTrace();
-        }
         break;
 
       default:

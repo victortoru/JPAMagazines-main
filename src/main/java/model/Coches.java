@@ -2,13 +2,11 @@ package model;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
 
 @Entity
 @Access(AccessType.FIELD)
 @Table(name = "Coches")
 public class Coches implements Serializable{
-
     @Id
     @Column(name = "Carroceria")
     String carroceria;
@@ -20,11 +18,10 @@ public class Coches implements Serializable{
     int precio;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_coche")
-    public Coches coches;
+    @JoinColumn(name = "id_marca")
+    Marca marca;
 
-    public Coches(String carroceria, String combustible, int plazas,
-                   int precio) {
+    public Coches(String carroceria, String combustible, int plazas, int precio, int i) {
         super();
         this.carroceria = carroceria;
         this.combustible = combustible;
@@ -60,5 +57,13 @@ public class Coches implements Serializable{
         this.plazas = plazas;
     }
 
+    public int getPrecio() {return  precio; }
 
+    public void setPrecio(int precio) {this.precio = precio; }
+
+    @Override
+    public String toString() {
+        return "Coches [ Carroceria=" + carroceria + ", Combustible=" + combustible + ", Plazas=" + plazas
+                + ", Precio=" + precio + "]";
+    }
 }

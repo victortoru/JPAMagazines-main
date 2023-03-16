@@ -1,7 +1,7 @@
-"Carroceria","Combustible","Plazas","Precio"
-sedán,gasolina,5,40.000
-SUV,diesel,7,35.000
-cabrio,gasolina,2,60.000
-Pick-UP,diesel,3,25.000
-4x4,diesel,9,20.000
-berlina,gasolina,4,150.000
+"id_coches","id_marca","Carroceria","Combustible","Plazas","Precio"
+1,1,sedán,gasolina,5,40.000
+2,2,SUV,diesel,7,35.000
+3,1,cabrio,gasolina,2,60.000
+4,4,Pick-UP,diesel,3,25.000
+5,2,4x4,diesel,9,20.000
+6,1,berlina,gasolina,4,150.000
